@@ -5,6 +5,8 @@
  */
 package naval;
 
+import java.util.Objects;
+
 /**
  *
  * @author andre torres
@@ -17,7 +19,7 @@ public class Navio {
 
 /**
  *
- * @author matrivula 
+ * @author matricula 
  */    
     
     public String getNome() {
@@ -42,6 +44,33 @@ public class Navio {
     
     public String toString(){
         return nome+ ":" + matricula;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 71 * hash + Objects.hashCode(this.nome);
+        hash = 71 * hash + Float.floatToIntBits(this.comprimento);
+        hash = 71 * hash + Objects.hashCode(this.matricula);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Navio other = (Navio) obj;
+        if (!Objects.equals(this.matricula, other.matricula)) {
+            return false;
+        }
+        return true;
     }
     
 }
